@@ -372,9 +372,8 @@ animation = "dead"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.35, 0.35 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -10, 20 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 45 )
