@@ -103,7 +103,12 @@ func handle_movement():
 	if Input.is_action_pressed("ui_right"):
 		dir += 1
 
-	velocity.x = dir * speed
+	# Si se presiona Ctrl, reducir velocidad al 50%
+	var current_speed = speed
+	if Input.is_key_pressed(KEY_CONTROL):
+		current_speed *= 0.5
+
+	velocity.x = dir * current_speed
 
 	if dir != 0:
 		sprite.set_flip_h(dir < 0)
