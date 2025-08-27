@@ -15,6 +15,9 @@ var sprite
 func _ready():
 	sprite = get_node("AnimatedSprite")
 	sprite.play("idle")
+	
+	# Aseguramos que el área de ataque esté en el grupo correcto
+	$AttackArea.add_to_group("PlayerAttack")
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -22,7 +25,6 @@ func _physics_process(delta):
 	handle_input()
 	handle_movement()
 
-	# Aplicar movimiento
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 	# Animaciones (si no hay ataque ni estado especial)
@@ -103,7 +105,6 @@ func handle_movement():
 	if Input.is_action_pressed("ui_right"):
 		dir += 1
 
-	# Si se presiona Ctrl, reducir velocidad al 50%
 	var current_speed = speed
 	if Input.is_key_pressed(KEY_CONTROL):
 		current_speed *= 0.5
@@ -116,5 +117,15 @@ func handle_movement():
 func perform_attack(anim_name):
 	is_attacking = true
 	sprite.play(anim_name)
+
+	# Detectar cuerpos dentro del área de ataque
+	var attack_area = $AttackArea
+	var overlapping_bodies = attack_area.get_overlapping_bodies()
+
+	for body in overlapping_bodies:
+		if body.is_in_group("Enemies"):
+			# Pasar self para que el enemigo sepa quién lo atacó
+			body.take_damage(self)
+
 	yield(sprite, "animation_finished")
 	is_attacking = false

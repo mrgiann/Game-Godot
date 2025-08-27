@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/HMMIdleSword.png" type="Texture" id=1]
 [ext_resource path="res://Assets/HMMRunSword.png" type="Texture" id=2]
@@ -361,14 +361,18 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 40, 100 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[sub_resource type="CircleShape2D" id=64]
+radius = 91.2414
+
+[node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -8 )
 scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-animation = "dead"
+animation = "idle"
+playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -377,3 +381,10 @@ zoom = Vector2( 0.35, 0.35 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -10, 20 )
 shape = SubResource( 45 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2( -10, 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 65, -35 )
+shape = SubResource( 64 )
