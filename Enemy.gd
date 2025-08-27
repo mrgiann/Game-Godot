@@ -67,7 +67,7 @@ func _physics_process(delta):
 
 		if not is_attacking:
 			if dist_to_player <= attack_range:
-				$AnimatedSprite.play("attackenemy")
+				$AnimatedSprite.play("cutenemy")
 				is_attacking = true
 			elif $AnimatedSprite.animation != "idleenemy":
 				$AnimatedSprite.play("idleenemy")

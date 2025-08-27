@@ -694,6 +694,7 @@ position = Vector2( -35, 79 )
 
 [node name="Bat" parent="." instance=ExtResource( 11 )]
 position = Vector2( -11, -137 )
+scale = Vector2( 0.732364, 0.504704 )
 
 [node name="Enemy4" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1789, 533 )

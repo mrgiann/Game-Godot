@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var speed = 70
+var speed = 120
 var player = null
 var min_distance = 10  # distancia mínima para quedarse quieto cerca del jugador
 var offset = Vector2(0, -30)  # posición relativa arriba del jugador
@@ -21,7 +21,7 @@ func _ready():
 	sprite.play()
 	print("🎞️ Reproduciendo animación por defecto")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not player:
 		return
 

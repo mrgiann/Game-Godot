@@ -224,6 +224,7 @@ script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.909091, 0 )
+scale = Vector2( 1, 0.99113 )
 frames = SubResource( 1 )
 animation = "walkenemy"
 playing = true

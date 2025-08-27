@@ -362,7 +362,7 @@ animations = [ {
 extents = Vector2( 40, 100 )
 
 [sub_resource type="CircleShape2D" id=64]
-radius = 91.2414
+radius = 130.0
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -8 )
@@ -384,7 +384,8 @@ shape = SubResource( 45 )
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2( -10, 20 )
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 65, -35 )
+position = Vector2( -1.90735e-06, -5 )
 shape = SubResource( 64 )
