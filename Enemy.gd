@@ -1,142 +1,173 @@
 extends KinematicBody2D
 
-# Movimiento y patrullaje
 var speed = 30
-var direction = Vector2(1, 0)
-var patrol_distance = 30
-var start_position = Vector2()
+var move_range = 50
+var start_position = Vector2.ZERO
+var direction = Vector2.ZERO
 
-var idle_time = 2.0
-var timer = 0.0
 var is_idle = false
-var move_count = 0
-var max_moves = 0
+var idle_time = 0.0
+var idle_timer = 0.0
+var move_time = 0.0
+var move_timer = 0.0
 
-# Delay inicial antes de empezar a patrullar
-var start_delay = 0.0
-var delay_timer = 0.0
-var started = false
-
-# Vida y estado
-var health = 3
+var health = 5
 var is_dead = false
-var is_aggressive = false
-var is_attacking = false
-var player_target = null  # Guarda al jugador que lo atacó
 
-# Distancia para iniciar ataque
-var attack_range = 40
+var player = null
+var player_detect_range_x = 80
+var player_detect_range_y = 20
+var lost_player_timer = 0.0
+var lost_player_delay = 4.0
+
+var is_player_near = false
+var hurt_timer = 0.0
+var hurt_duration = 0.3
+
+# Ataque
+var is_attacking = false
+var attack_hit_done = false
+
+onready var sprite = $AnimatedSprite
+onready var hurt_area = $HurtArea
+onready var cut_area = $CutArea
 
 func _ready():
 	randomize()
 	start_position = position
-	$AnimatedSprite.play("walkenemy")
-	$AnimatedSprite.flip_h = false
+	_set_idle_state()
 
-	max_moves = randi() % 5 + 2
-	start_delay = rand_range(0.0, 3.0)
-	delay_timer = 0.0
-	started = false
+	hurt_area.monitoring = true
+	hurt_area.monitorable = true
+	hurt_area.add_to_group("EnemyHurtBox")
+
+	cut_area.monitoring = true
+	cut_area.monitorable = true
+	cut_area.add_to_group("EnemyAttack")
 
 	add_to_group("Enemies")
 
-	# Conectar área de daño
-	$HurtArea.connect("body_entered", self, "_on_HurtArea_body_entered")
-
-	# Conectar señal para saber cuándo termina la animación de ataque
-	$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
+	player = get_tree().get_root().find_node("Player", true, false)
 
 func _physics_process(delta):
 	if is_dead:
 		return
 
-	# Esperar delay inicial
-	if not started:
-		delay_timer += delta
-		if delay_timer >= start_delay:
-			started = true
-		else:
-			return
-
-	# Si está agresivo, mirar al jugador y atacar si está cerca
-	if is_aggressive and player_target != null:
-		var dir_to_player = (player_target.global_position - global_position).normalized()
-		$AnimatedSprite.flip_h = dir_to_player.x < 0
-
-		var dist_to_player = position.distance_to(player_target.global_position)
-
-		if not is_attacking:
-			if dist_to_player <= attack_range:
-				$AnimatedSprite.play("cutenemy")
-				is_attacking = true
-			elif $AnimatedSprite.animation != "idleenemy":
-				$AnimatedSprite.play("idleenemy")
+	if hurt_timer > 0:
+		hurt_timer -= delta
+		if hurt_timer <= 0 and is_player_near and not is_attacking:
+			sprite.play("cutenemy")
 		return
 
-	# Patrullaje
-	timer += delta
+	if player:
+		if _player_near():
+			is_player_near = true
+			_look_at_player()
+			if not is_attacking:
+				_start_attack()
+			lost_player_timer = 0.0
+			return
+		else:
+			if is_player_near:
+				lost_player_timer += delta
+				if lost_player_timer >= lost_player_delay:
+					is_player_near = false
+					lost_player_timer = 0.0
+					_set_idle_state()
 
 	if is_idle:
-		if timer >= idle_time:
-			is_idle = false
-			timer = 0
-			move_count = 0
-			max_moves = randi() % 5 + 2
-			$AnimatedSprite.play("walkenemy")
+		idle_timer += delta
+		if idle_timer >= idle_time:
+			_set_move_state()
 	else:
-		var velocity = direction * speed
-		move_and_slide(velocity)
+		move_timer += delta
+		var velocity_move = direction * speed
+		move_and_slide(velocity_move, Vector2.UP)
 
-		if position.distance_to(start_position) >= patrol_distance:
-			direction = -direction
-			$AnimatedSprite.flip_h = direction.x < 0
-			move_count += 1
+		var dist = position.x - start_position.x
+		if abs(dist) >= move_range:
+			_reverse_direction()
 
-			if move_count >= max_moves:
-				is_idle = true
-				timer = 0
-				$AnimatedSprite.play("idleenemy")
+		if move_timer >= move_time:
+			_set_idle_state()
 
-func _on_HurtArea_body_entered(body):
-	if is_dead or is_attacking:
+func _start_attack():
+	is_attacking = true
+	attack_hit_done = false   # Reinicia la bandera al empezar el ataque
+	direction = Vector2.ZERO   # Se detiene mientras ataca
+	sprite.play("cutenemy")
+	
+	# Espera hasta el frame del golpe (ajustar según animación)
+	yield(get_tree().create_timer(0.3), "timeout")
+	hit_player()
+	
+	yield(sprite, "animation_finished")
+	is_attacking = false
+
+func hit_player():
+	if attack_hit_done:
 		return
+	if player and cut_area.get_overlapping_bodies().has(player):
+		player.take_damage(10)
+	attack_hit_done = true
 
-	if body.is_in_group("PlayerAttack"):
-		var attacker = body.get_owner()
-		if attacker != null and attacker.is_in_group("Player"):
-			take_damage(attacker)
+func _set_idle_state():
+	is_idle = true
+	idle_time = rand_range(1.0, 2.0)
+	idle_timer = 0.0
+	direction = Vector2.ZERO
+	sprite.play("idleenemy")
 
-func take_damage(from_player):
+func _set_move_state():
+	is_idle = false
+	move_time = rand_range(4.0, 7.0)
+
+	var dist = position.x - start_position.x
+	if dist <= -move_range:
+		direction = Vector2(1, 0)
+	elif dist >= move_range:
+		direction = Vector2(-1, 0)
+	else:
+		if randf() < 0.5:
+			direction = Vector2(-1, 0)
+		else:
+			direction = Vector2(1, 0)
+
+	sprite.flip_h = direction.x < 0
+	sprite.play("walkenemy")
+
+func _reverse_direction():
+	direction = Vector2(-direction.x, 0)
+	sprite.flip_h = direction.x < 0
+
+func _player_near():
+	var horizontal_ok = abs(position.x - player.position.x) <= player_detect_range_x
+	var vertical_ok = abs(position.y - player.position.y) <= player_detect_range_y
+	return horizontal_ok and vertical_ok
+
+func _look_at_player():
+	if player.position.x < position.x:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+	direction = Vector2.ZERO
+
+func take_damage(attacker):
 	if is_dead:
 		return
 
 	health -= 1
-	player_target = from_player
-	is_aggressive = true
+	hurt_timer = hurt_duration
+	sprite.play("hurtenemy")
 
 	if health <= 0:
 		die()
-		return
-
-	started = false
-	$AnimatedSprite.play("hurtenemy")
-	yield($AnimatedSprite, "animation_finished")
-
-	$AnimatedSprite.play("cutenemy")
-	yield($AnimatedSprite, "animation_finished")
-
-func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == "attackenemy":
-		is_attacking = false
-		if is_aggressive and player_target != null:
-			$AnimatedSprite.play("idleenemy")
 
 func die():
 	is_dead = true
-	$AnimatedSprite.play("deadenemy")
+	direction = Vector2.ZERO
+	sprite.play("deadenemy")
+	hurt_area.monitoring = false
+	cut_area.monitoring = false
 	set_collision_layer(0)
 	set_collision_mask(0)
-	set_physics_process(false)
-
-	yield($AnimatedSprite, "animation_finished")
-	queue_free()
