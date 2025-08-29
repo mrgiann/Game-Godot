@@ -712,5 +712,5 @@ position = Vector2( 10, -2 )
 scale = Vector2( 1.1, 1.1 )
 
 [node name="Heart" parent="Items" instance=ExtResource( 12 )]
-position = Vector2( 64.5454, -70.9091 )
+position = Vector2( 656.364, 531.818 )
 scale = Vector2( 0.7, 0.7 )

@@ -93,13 +93,12 @@ func _physics_process(delta):
 
 func _start_attack():
 	is_attacking = true
-	attack_hit_done = false   # Reinicia la bandera al empezar el ataque
-	direction = Vector2.ZERO   # Se detiene mientras ataca
+	attack_hit_done = false
+	direction = Vector2.ZERO
 	sprite.play("cutenemy")
 	
-	# Espera hasta el frame del golpe (ajustar según animación)
 	yield(get_tree().create_timer(0.3), "timeout")
-	hit_player()
+	hit_player() # Solo se llama una vez aquí
 	
 	yield(sprite, "animation_finished")
 	is_attacking = false
@@ -108,8 +107,9 @@ func hit_player():
 	if attack_hit_done:
 		return
 	if player and cut_area.get_overlapping_bodies().has(player):
-		player.take_damage(10)
-	attack_hit_done = true
+		player.take_damage(10, global_position)
+		attack_hit_done = true
+
 
 func _set_idle_state():
 	is_idle = true

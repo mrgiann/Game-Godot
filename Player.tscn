@@ -325,7 +325,7 @@ animations = [ {
 "speed": 12.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
-"loop": false,
+"loop": true,
 "name": "cut2",
 "speed": 12.0
 }, {

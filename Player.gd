@@ -23,8 +23,6 @@ var health_bar
 func _ready():
 	sprite = get_node("AnimatedSprite")
 	sprite.play("idle")
-
-	add_to_group("Player")   # 👈 ahora tu player está en el grupo "Player"
 	
 	$AttackArea.add_to_group("PlayerAttack")
 	
@@ -34,7 +32,6 @@ func _ready():
 	$HurtArea.monitoring = true
 	$HurtArea.monitorable = true
 	$HurtArea.add_to_group("PlayerHurtArea")
-
 
 func _physics_process(delta):
 	if is_dead:
