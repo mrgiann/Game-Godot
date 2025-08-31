@@ -1,391 +1,252 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=123 format=2]
 
-[ext_resource path="res://Assets/HMMIdleSword.png" type="Texture" id=1]
-[ext_resource path="res://Assets/HMMRunSword.png" type="Texture" id=2]
-[ext_resource path="res://Assets/HMMSwipe.png" type="Texture" id=3]
-[ext_resource path="res://Assets/HMMJumpSword.png" type="Texture" id=4]
-[ext_resource path="res://Assets/HMMSwipe2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A5.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A6.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A7.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B5.png" type="Texture" id=5]
 [ext_resource path="res://Player.gd" type="Script" id=6]
-[ext_resource path="res://Assets/HMMHurtSword.png" type="Texture" id=7]
-[ext_resource path="res://Assets/HMMShieldwalkwSword.png" type="Texture" id=8]
-[ext_resource path="res://Assets/HMMDeathSword.png" type="Texture" id=9]
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 1280, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 1536, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 1792, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 2048, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 1280, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 1536, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 1792, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 2048, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=46]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=47]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=48]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=49]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=50]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=51]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 1280, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=52]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 1536, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=53]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 1792, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=54]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 2048, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=55]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 2304, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=56]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=57]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=58]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=59]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=60]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=61]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=62]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=63]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=25]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1280, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1536, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1792, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2048, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2304, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=32]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2560, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=33]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2816, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=34]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 3072, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=35]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=36]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 256, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=37]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 512, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=38]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 768, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=39]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1024, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=40]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1280, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=41]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1536, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1792, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 2048, 0, 256, 256 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 2304, 0, 256, 256 )
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C7.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/health_bar.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D3.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D4.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B6.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C6.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D6.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A4.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C5.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D8.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D5.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D9.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Playerrrr/Attacks/jump-attack-1.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D7.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Playerrrr/Attacks/jump-attack-2.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A2.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B2.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-A3.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C2.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C3.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-D1.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-C4.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B4.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Playerrrr/Attacks/attack-B3.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Playerrrr/Attacks/jump-attack-3.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Playerrrr/Attacks/kick-2.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Playerrrr/Attacks/kick-3.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Playerrrr/Attacks/jump-attack-4.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Playerrrr/Attacks/jump-attack-5.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Playerrrr/Attacks/kick-1.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-up-2.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Playerrrr/Run/run-11.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-8.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-3.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-activ-2.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-2.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-center-1.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-5.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-1.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-7.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-activ-1.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-up-1.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-6.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-11.png" type="Texture" id=54]
+[ext_resource path="res://Assets/Playerrrr/Shield Block/shield-block-center-2.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Playerrrr/Run/run-9.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-4.png" type="Texture" id=57]
+[ext_resource path="res://Assets/Playerrrr/Run/run-12.png" type="Texture" id=58]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-9.png" type="Texture" id=59]
+[ext_resource path="res://Assets/Playerrrr/walk-with-weapon-10.png" type="Texture" id=60]
+[ext_resource path="res://Assets/Playerrrr/Run/run-10.png" type="Texture" id=61]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-1.png" type="Texture" id=62]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-9.png" type="Texture" id=63]
+[ext_resource path="res://Assets/bar_background.png" type="Texture" id=64]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-4.png" type="Texture" id=65]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-7.png" type="Texture" id=66]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-8.png" type="Texture" id=67]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-14.png" type="Texture" id=68]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-5.png" type="Texture" id=69]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-4.png" type="Texture" id=71]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-12.png" type="Texture" id=72]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-A4.png" type="Texture" id=73]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-11.png" type="Texture" id=75]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-B3.png" type="Texture" id=76]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-10.png" type="Texture" id=77]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-12.png" type="Texture" id=78]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-4.png" type="Texture" id=79]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-14.png" type="Texture" id=80]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-3.png" type="Texture" id=81]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-5.png" type="Texture" id=82]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-7.png" type="Texture" id=83]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-1.png" type="Texture" id=84]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-8.png" type="Texture" id=86]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-2.png" type="Texture" id=87]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-10.png" type="Texture" id=88]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-3.png" type="Texture" id=89]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-4.png" type="Texture" id=90]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-9.png" type="Texture" id=91]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-13.png" type="Texture" id=92]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-B1.png" type="Texture" id=94]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-B4.png" type="Texture" id=95]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-13.png" type="Texture" id=96]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-A2.png" type="Texture" id=97]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-11.png" type="Texture" id=98]
+[ext_resource path="res://Assets/Playerrrr/Run/run-1.png" type="Texture" id=100]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-6.png" type="Texture" id=104]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-B2.png" type="Texture" id=105]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-2.png" type="Texture" id=106]
+[ext_resource path="res://Assets/Playerrrr/Dead/dead-2.png" type="Texture" id=107]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-1.png" type="Texture" id=108]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-A3.png" type="Texture" id=109]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-2.png" type="Texture" id=111]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-6.png" type="Texture" id=112]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-5.png" type="Texture" id=113]
+[ext_resource path="res://Assets/Playerrrr/Roll/roll-6.png" type="Texture" id=114]
+[ext_resource path="res://Assets/Playerrrr/Run/run-2.png" type="Texture" id=115]
+[ext_resource path="res://Assets/Playerrrr/Hit/hit-with-weapon-A1.png" type="Texture" id=116]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-5.png" type="Texture" id=118]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-3.png" type="Texture" id=121]
+[ext_resource path="res://Assets/Playerrrr/Idle/idle-with-weapon-6.png" type="Texture" id=122]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-1.png" type="Texture" id=123]
+[ext_resource path="res://Assets/Playerrrr/Jump/jump-3.png" type="Texture" id=125]
+[ext_resource path="res://Assets/Playerrrr/Run/run-4.png" type="Texture" id=126]
+[ext_resource path="res://Assets/Playerrrr/Run/run-3.png" type="Texture" id=127]
+[ext_resource path="res://Assets/Playerrrr/Run/run-8.png" type="Texture" id=128]
+[ext_resource path="res://Assets/Playerrrr/Run/run-6.png" type="Texture" id=129]
+[ext_resource path="res://Assets/Playerrrr/Run/run-5.png" type="Texture" id=130]
+[ext_resource path="res://Assets/Playerrrr/Run/run-7.png" type="Texture" id=131]
+[ext_resource path="res://Assets/Playerrrr/Attacks/kick-4.png" type="Texture" id=133]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": false,
+"frames": [ ExtResource( 1 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 18 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
 "name": "cut",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
-"loop": false,
+"frames": [ ExtResource( 7 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 5 ), ExtResource( 15 ) ],
+"loop": true,
 "name": "cut2",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "cut3",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
+"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 24 ), ExtResource( 20 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "cut4",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 40 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 133 ) ],
+"loop": true,
+"name": "cutkick",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 84 ), ExtResource( 107 ), ExtResource( 81 ), ExtResource( 90 ), ExtResource( 82 ), ExtResource( 104 ) ],
 "loop": false,
 "name": "dead",
-"speed": 12.0
+"speed": 5.0
 }, {
-"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ) ],
+"frames": [ ExtResource( 51 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 55 ), ExtResource( 52 ), ExtResource( 41 ) ],
 "loop": false,
 "name": "escudo",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ) ],
+"frames": [ ExtResource( 116 ), ExtResource( 97 ), ExtResource( 109 ), ExtResource( 73 ) ],
 "loop": false,
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ ExtResource( 94 ), ExtResource( 105 ), ExtResource( 76 ), ExtResource( 95 ) ],
+"loop": false,
+"name": "hurt2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 108 ), ExtResource( 106 ), ExtResource( 121 ), ExtResource( 79 ), ExtResource( 69 ), ExtResource( 122 ) ],
 "loop": true,
 "name": "idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
-"loop": false,
+"frames": [ ExtResource( 123 ), ExtResource( 111 ), ExtResource( 125 ), ExtResource( 71 ), ExtResource( 118 ), ExtResource( 112 ), ExtResource( 83 ), ExtResource( 86 ), ExtResource( 63 ), ExtResource( 77 ), ExtResource( 98 ), ExtResource( 72 ), ExtResource( 92 ), ExtResource( 68 ) ],
+"loop": true,
 "name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 35 ), ExtResource( 38 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "jumpcut",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"frames": [ ExtResource( 62 ), ExtResource( 87 ), ExtResource( 89 ), ExtResource( 65 ), ExtResource( 113 ), ExtResource( 114 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 91 ), ExtResource( 88 ), ExtResource( 75 ), ExtResource( 78 ), ExtResource( 96 ), ExtResource( 80 ) ],
 "loop": false,
+"name": "roll",
+"speed": 16.0
+}, {
+"frames": [ ExtResource( 100 ), ExtResource( 115 ), ExtResource( 127 ), ExtResource( 126 ), ExtResource( 130 ), ExtResource( 129 ), ExtResource( 131 ), ExtResource( 128 ), ExtResource( 56 ), ExtResource( 61 ), ExtResource( 42 ), ExtResource( 58 ) ],
+"loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 49 ), ExtResource( 46 ), ExtResource( 44 ), ExtResource( 57 ), ExtResource( 48 ), ExtResource( 53 ), ExtResource( 50 ), ExtResource( 43 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 54 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 40, 100 )
+extents = Vector2( 12.2952, 37.0175 )
 
 [sub_resource type="CircleShape2D" id=64]
-radius = 130.0
+radius = 50.0
+
+[sub_resource type="RectangleShape2D" id=65]
+extents = Vector2( 25, 32.5 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 0, -8 )
+position = Vector2( 4, -4.76837e-07 )
 scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -20, 2.38419e-06 )
 frames = SubResource( 3 )
 animation = "idle"
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -20 )
 current = true
-zoom = Vector2( 0.35, 0.35 )
+zoom = Vector2( 0.25, 0.25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -10, 20 )
+visible = false
+position = Vector2( -20, 1.25 )
+scale = Vector2( 0.813323, 0.844195 )
 shape = SubResource( 45 )
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2( -10, 20 )
-scale = Vector2( 1, 1 )
+position = Vector2( -20, 5.00001 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -1.90735e-06, -5 )
+position = Vector2( 0, -5.00001 )
 shape = SubResource( 64 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = -35.0
+margin_top = -40.0
+margin_right = 85.0
+margin_bottom = -21.0
+rect_scale = Vector2( 0.3, 0.319 )
+texture_under = ExtResource( 64 )
+texture_progress = ExtResource( 11 )
+
+[node name="HurtArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2( -20, 2.49999 )
+scale = Vector2( 0.999998, 0.999998 )
+shape = SubResource( 65 )

@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Juego Godot"
+run/main_scene="res://Juego.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1200
 
 [gui]
 
