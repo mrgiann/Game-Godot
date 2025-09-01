@@ -166,6 +166,7 @@ scale = Vector2( 1, 0.99113 )
 frames = SubResource( 1 )
 animation = "idleenemy"
 playing = true
+flip_h = true
 
 [node name="HurtArea" type="Area2D" parent="."]
 
