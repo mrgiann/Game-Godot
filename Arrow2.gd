@@ -3,7 +3,7 @@ extends Area2D
 var speed = 200
 var direction = Vector2.ZERO
 var damage = 15
-var max_range = 1160  # Rango máximo en píxeles
+var max_range = 800  # Rango máximo en píxeles
 var start_position = Vector2.ZERO
 
 func _ready():

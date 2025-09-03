@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saw Trap - Level 1.png-40e02cff9b0aa2df6d2c7f472a53d800.stex"
+path="res://.import/Bringer-of-Death-SpritSheet.png-590d09e5cc91fa4e29c299b69790c702.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foozle_2DTR0001_Pixel_Trap_Pack/Saw Trap/PNGs/Saw Trap - Level 1.png"
-dest_files=[ "res://.import/Saw Trap - Level 1.png-40e02cff9b0aa2df6d2c7f472a53d800.stex" ]
+source_file="res://Assets/boss/Bringer-of-Death-SpritSheet.png"
+dest_files=[ "res://.import/Bringer-of-Death-SpritSheet.png-590d09e5cc91fa4e29c299b69790c702.stex" ]
 
 [params]
 

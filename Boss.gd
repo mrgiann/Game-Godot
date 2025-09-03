@@ -1,40 +1,29 @@
 extends KinematicBody2D
 
-var speed = 30
-var move_range = 50
-var start_position = Vector2.ZERO
-var direction = Vector2.ZERO
-
-var is_idle = false
-var idle_time = 0.0
-var idle_timer = 0.0
-var move_time = 0.0
-var move_timer = 0.0
-
 var health = 5
 var is_dead = false
 
 var player = null
-var player_detect_range_x = 80
+var player_detect_range_x = 70
 var player_detect_range_y = 20
-var lost_player_timer = 0.0
-var lost_player_delay = 4.0
 
 var is_player_near = false
 var hurt_timer = 0.0
-var hurt_duration = 0.3
+var hurt_duration = 0.6
 
 # Ataque
 var is_attacking = false
 var attack_hit_done = false
+var attack_cooldown = 1.0  # Tiempo en segundos entre ataques
+var attack_cooldown_timer = 0.0  # Temporizador de enfriamiento
 
 onready var sprite = $AnimatedSprite
 onready var hurt_area = $HurtArea
 onready var cut_area = $CutArea
+onready var health_bar = $HealthBar  # Referencia a la barra de vida
 
 func _ready():
 	randomize()
-	start_position = position
 	_set_idle_state()
 
 	hurt_area.monitoring = true
@@ -50,9 +39,17 @@ func _ready():
 	add_to_group("Enemies")
 	player = get_tree().get_root().find_node("Player", true, false)
 
+	# Inicializamos la barra de vida
+	health_bar.max_value = health
+	health_bar.value = health
+
 func _physics_process(delta):
 	if is_dead:
 		return
+
+	# Actualizamos el temporizador de enfriamiento
+	if attack_cooldown_timer > 0:
+		attack_cooldown_timer -= delta
 
 	if hurt_timer > 0:
 		hurt_timer -= delta
@@ -60,42 +57,21 @@ func _physics_process(delta):
 			sprite.play("cutenemy")
 		return
 
-	if player:
-		if _player_near():
-			is_player_near = true
-			_look_at_player()
-			if not is_attacking:
-				_start_attack()
-			lost_player_timer = 0.0
-			return
-		else:
-			if is_player_near:
-				lost_player_timer += delta
-				if lost_player_timer >= lost_player_delay:
-					is_player_near = false
-					lost_player_timer = 0.0
-					_set_idle_state()
-
-	if is_idle:
-		idle_timer += delta
-		if idle_timer >= idle_time:
-			_set_move_state()
+	if player and _player_near():
+		is_player_near = true
+		if not is_attacking and attack_cooldown_timer <= 0:  # Solo ataca si el enfriamiento ha pasado
+			_start_attack()
 	else:
-		move_timer += delta
-		var velocity_move = direction * speed
-		move_and_slide(velocity_move, Vector2.UP)
-
-		var dist = position.x - start_position.x
-		if abs(dist) >= move_range:
-			_reverse_direction()
-
-		if move_timer >= move_time:
+		is_player_near = false
+		if not is_attacking:
 			_set_idle_state()
 
 func _start_attack():
+	if is_dead:
+		return
+
 	is_attacking = true
 	attack_hit_done = false
-	direction = Vector2.ZERO
 	sprite.play("cutenemy")
 
 	# Esperar hasta el frame de golpe
@@ -103,13 +79,19 @@ func _start_attack():
 
 	# Solo un golpe
 	if player and _player_near() and not attack_hit_done:
-		player.take_damage(10, global_position)
+		player.take_damage(20, global_position)
 		attack_hit_done = true
 
 	# Fin de ataque
 	yield(sprite, "animation_finished")
 	is_attacking = false
 
+	# Establecer el temporizador de enfriamiento
+	attack_cooldown_timer = attack_cooldown
+
+	# Volver a idle si no está muerto
+	if not is_dead:
+		_set_idle_state()
 
 func _on_cut_area_entered(area):
 	if area.is_in_group("PlayerHurtArea") and not attack_hit_done:
@@ -118,60 +100,38 @@ func _on_cut_area_entered(area):
 		attack_hit_done = true
 
 func _set_idle_state():
-	is_idle = true
-	idle_time = rand_range(1.0, 2.0)
-	idle_timer = 0.0
-	direction = Vector2.ZERO
 	sprite.play("idleenemy")
-
-func _set_move_state():
-	is_idle = false
-	move_time = rand_range(4.0, 7.0)
-
-	var dist = position.x - start_position.x
-	if dist <= -move_range:
-		direction = Vector2(1, 0)
-	elif dist >= move_range:
-		direction = Vector2(-1, 0)
-	else:
-		if randf() < 0.5:
-			direction = Vector2(-1, 0)
-		else:
-			direction = Vector2(1, 0)
-
-	sprite.flip_h = direction.x < 0
-	sprite.play("walkenemy")
-
-func _reverse_direction():
-	direction = Vector2(-direction.x, 0)
-	sprite.flip_h = direction.x < 0
 
 func _player_near():
 	var horizontal_ok = abs(position.x - player.position.x) <= player_detect_range_x
 	var vertical_ok = abs(position.y - player.position.y) <= player_detect_range_y
 	return horizontal_ok and vertical_ok
 
-func _look_at_player():
-	if player.position.x < position.x:
-		sprite.flip_h = true
-	else:
-		sprite.flip_h = false
-	direction = Vector2.ZERO
-
+# Cambié la lógica de recibir daño para que el boss ataque después de recibir daño
 func take_damage(attacker):
 	if is_dead:
 		return
 	health -= 1
 	hurt_timer = hurt_duration
 	sprite.play("hurtenemy")
+
+	# Actualizar la barra de vida
+	health_bar.value = health  # Reducir el valor de la barra
+
+	# Ataque al jugador después de recibir daño (si no está en enfriamiento)
+	if player and _player_near() and not is_attacking and attack_cooldown_timer <= 0:
+		_start_attack()
+
 	if health <= 0:
 		die()
 
 func die():
 	is_dead = true
-	direction = Vector2.ZERO
 	sprite.play("deadenemy")
 	hurt_area.monitoring = false
 	cut_area.monitoring = false
 	set_collision_layer(0)
 	set_collision_mask(0)
+
+	# Desaparecer la barra de vida cuando el jefe muere
+	health_bar.queue_free()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saw Trap - Level 1.png-40e02cff9b0aa2df6d2c7f472a53d800.stex"
+path="res://.import/flecha.png-7ae3190113bcb33e88648c4e8537c2a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foozle_2DTR0001_Pixel_Trap_Pack/Saw Trap/PNGs/Saw Trap - Level 1.png"
-dest_files=[ "res://.import/Saw Trap - Level 1.png-40e02cff9b0aa2df6d2c7f472a53d800.stex" ]
+source_file="res://Assets/Decorations/flecha.png"
+dest_files=[ "res://.import/flecha.png-7ae3190113bcb33e88648c4e8537c2a3.stex" ]
 
 [params]
 
