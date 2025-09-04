@@ -7,5 +7,5 @@
 [node name="Niveles" type="Node2D" parent="."]
 
 [node name="level1" parent="Niveles" instance=ExtResource( 3 )]
-position = Vector2( 1, 0 )
+position = Vector2( 7, 35 )
 script = null

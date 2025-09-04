@@ -242,6 +242,16 @@ func take_damage(amount, enemy_position = null):
 func die():
 	is_dead = true
 	sprite.play("dead")
+	
+	# Esperar a que termine la animación de muerte
+	yield(sprite, "animation_finished")
+	
+	# Esperar un poco antes de reiniciar (por ejemplo, 1 segundo)
+	yield(get_tree().create_timer(1.0), "timeout")
+	
+	# Reiniciar la escena después de la espera
+	get_tree().reload_current_scene()
+
 
 # =========================
 # Función agregada para curar vida

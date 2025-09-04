@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Juego Godot"
-run/main_scene="res://Juego.tscn"
+run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PlayerData="*res://PlayerData.gd"
 
 [display]
 

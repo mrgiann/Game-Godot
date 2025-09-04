@@ -42,7 +42,7 @@ func _on_Timer_timeout():
 			animated_sprite.play("vuelta")
 			current_animation = 2  # Cambiar al siguiente paso
 			timer.wait_time = time_2_to_3  # Tiempo entre vuelta e idle
-			is_damaging_player = true  # Habilitar daño al jugador durante la animación vuelta
+			is_damaging_player = false  # Habilitar daño al jugador durante la animación vuelta
 
 		2:
 			# Cambiar a la animación idle

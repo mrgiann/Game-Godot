@@ -69,7 +69,7 @@ func _start_attack():
 
 	# Solo un golpe
 	if player and _player_near() and not attack_hit_done:
-		player.take_damage(20, global_position)
+		player.take_damage(10, global_position)
 		attack_hit_done = true
 
 	# Fin de ataque
