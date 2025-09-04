@@ -3,7 +3,7 @@ extends KinematicBody2D
 # Variables
 var health = 1
 var is_dead = false
-var attack_cooldown = 2.0  # segundos entre flechas
+var attack_cooldown = 3.5  # segundos entre flechas
 var attack_timer = 0.0
 
 var player = null
@@ -13,7 +13,7 @@ onready var hurt_area = $HurtArea   # Area2D que detecta golpes
 
 # Path de la flecha
 var arrow_scene = preload("res://Arrow2.tscn")
-var arrow_speed = 250   # velocidad de las flechas
+var arrow_speed = 200   # velocidad de las flechas
 
 func _ready():
 	sprite.play("cutenemy")

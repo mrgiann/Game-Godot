@@ -23,8 +23,8 @@ var left_attack_sequence = ["cut", "cut3", "cut4"]
 var left_attack_index = 0
 
 # Vida
-var max_health = 1000
-var current_health = 1000
+var max_health = 100
+var current_health = 100
 var health_bar
 
 # Cooldown de daño
